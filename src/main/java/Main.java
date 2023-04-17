@@ -1,5 +1,6 @@
 // dev branch for Y.Practicum
 import java.util.Scanner;
+import java.lang.String;
 public class Main {
 
     public static void main(String[] args){
@@ -67,36 +68,33 @@ public class Main {
 
         }
 
-                String rubForm ="рублей";
-                String resultRubForm ="рублей";
-                int intSum = (int)calculator.sum;
-                int resultSum =(int)calculator.sum/numberOfFriends;
-                if (intSum % 10 ==1){
-                    rubForm = "рубль";
-                }
-                else if ((intSum %10 >= 2) && (intSum %10 <=4)){
-                    rubForm = "рубля";
-                }
-                else if ((intSum % 100 >=11)&& (intSum %100 <=20)){
-                    rubForm = "рублей";
-                    if (resultSum % 10 ==1){
-                        resultRubForm = "рубль";
-                    }
-                    else if ((resultSum %10 >= 2) && (resultSum %10 <=4)){
-                        resultRubForm= "рубля";
-                    }
-                    else if ((resultSum % 100 >=11)&& (resultSum %100 <=20)){
-                        resultRubForm = "рублей";}
 
-                }
-                String result = String.format("%.2f" , calculator.sum/numberOfFriends);
+
+                double resultSum = calculator.sum/numberOfFriends;
+                String result = String.format("%.2f" , resultSum);
+                String resultRubFormat = rubFormatter(resultSum);
 
                 System.out.println(calculator.addedProducts);
-                System.out.println("Итоговая стоимость заказа : " + calculator.sum +" " +rubForm);
+                System.out.println("Итоговая стоимость заказа : " + calculator.sum +" " + rubFormatter(calculator.sum));
 
-                System.out.println("Каждый человек должен заплатить по " +result + " "+ resultRubForm);
+                System.out.println("Каждый человек должен заплатить по " +result + " "+ resultRubFormat);
 
 
+    }
+    public static String rubFormatter(double x) {
+        String rubForm = " ";
+        int value = (int) x;
+        if ((value %100 >= 11) && (value % 100<=20)){
+            rubForm = "рублей";
+        }
+        else if(value %10 == 1){
+            rubForm = "рубль";
+        }
+        else if((value %10 >= 2)&&(value %10 <=4)){
+            rubForm = "рубля";
+
+        }
+        return rubForm;
     }
 
 
